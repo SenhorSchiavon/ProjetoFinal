@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "764132361930",
+    "project_id": "fitgarden-5a7a7",
+    "storage_bucket": "fitgarden-5a7a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764132361930:android:0bbd6bb74722f25e495633",
+        "android_client_info": {
+          "package_name": "com.example.projeto_final"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxt_kL61tyzLQrk_pWxl3Wo3x2xMMCqGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
