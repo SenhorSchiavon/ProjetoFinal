@@ -68,7 +68,7 @@ class _CadastrarContaState extends State<CadastrarConta> {
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
                       focusColor: Colors.grey,
-                      hintText: "Digite o Login",
+                      hintText: "Digite o novo Login",
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Colors.green,
@@ -95,7 +95,7 @@ class _CadastrarContaState extends State<CadastrarConta> {
                     obscureText: true,
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(
-                      hintText: "Digite a Senha",
+                      hintText: "Digite a nova Senha",
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Colors.green,

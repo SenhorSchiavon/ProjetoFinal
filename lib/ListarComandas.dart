@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'Banco.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +28,8 @@ class ListarComandas extends StatefulWidget {
 const TWO_PI = 3.14 * 2;
 
 class _ListarComandasState extends State<ListarComandas> {
+
+
   final size = 200.0;
 
   List<Map<String, dynamic>> listaProdutos = [];
@@ -119,6 +122,13 @@ class _ListarComandasState extends State<ListarComandas> {
         return Dismissible(
           key: Key(produto["id"].toString()),
           onDismissed: (direction) {
+            Banco.apagarPedido(
+              produto["nome"],
+              produto["telefone"],
+              produto["endereco"],
+              produto["quantidade"],
+              produto["tipo"],
+            );
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text("Item excluído com sucesso!!"),

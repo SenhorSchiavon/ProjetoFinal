@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_final/Banco.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class CadastrarComanda extends StatefulWidget {
   const CadastrarComanda({Key? key}) : super(key: key);
@@ -19,6 +20,8 @@ class _CadastrarComandaState extends State<CadastrarComanda> {
 
   String dropdownValue = list.isNotEmpty ? list.first : "";
 
+
+
   void _fazerPedido() {
     String nome = campoNome.text;
     String telefone = campoTelefone.text;
@@ -34,6 +37,8 @@ class _CadastrarComandaState extends State<CadastrarComanda> {
     campoQuantidade.clear();
     campoTipo.clear();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
