@@ -1,12 +1,10 @@
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Banco {
   static FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  static Future<void> inserirPedido(
-      String nome, String telefone, String endereco, int quantidade, String tipo) async {
+  static Future<void> inserirPedido(String nome, String telefone, String endereco, List<Map<String, dynamic>> tiposSelecionados) async {
     await Firebase.initializeApp();
 
     try {
@@ -14,13 +12,14 @@ class Banco {
         "nome": nome,
         "telefone": telefone,
         "endereco": endereco,
-        "quantidade": quantidade,
-        "tipo": tipo,
+        "tiposSelecionados": tiposSelecionados,
+        "data_pedido": FieldValue.serverTimestamp(),
       });
     } catch (e) {
       print("Erro ao inserir o pedido: $e");
     }
   }
+
 
   static Future<void> apagarPedido(
       String nome, String telefone, String endereco, int quantidade, String tipo) async {

@@ -1,99 +1,98 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_final/logado.dart';
-import 'Pagina1.dart';
-import 'Pagina2.dart';
-import 'Pagina3.dart';
-import 'Pagina4.dart';
-import 'logado.dart';
-import 'drawer_menu.dart';
-
+import 'package:projeto_final/Pagina1.dart';
+import 'package:projeto_final/Banco.dart';
+import 'package:projeto_final/Pagina2.dart';
+import 'package:projeto_final/Pagina3.dart';
+import 'package:projeto_final/Pagina4.dart';
 class Principal extends StatefulWidget {
-  final int paginaAtual;
-
-  final Function(int) changePage; // Adicione a função changePage
-
-  Principal({Key? key, required this.paginaAtual, required this.changePage}) : super(key: key);
+  const Principal({super.key});
 
   @override
-  _PrincipalState createState() => _PrincipalState();
+  State<Principal> createState() => _PrincipalState();
 }
 
 class _PrincipalState extends State<Principal> {
-  double xOffset = 0;
-  double yOffset = 0;
-  IconData menuIcon = Icons.menu;
-  bool isDrawerOpen = false;
-
-  void toggleDrawer() {
-    setState(() {
-      if (isDrawerOpen) {
-        xOffset = 0;
-        yOffset = 0;
-        isDrawerOpen = false;
-        menuIcon = Icons.menu;
-      } else {
-        xOffset = 290;
-        yOffset = 80;
-        isDrawerOpen = true;
-        menuIcon = Icons.arrow_back;
-      }
-    });
-  }
-
-  void changePage(int index) {
-    setState(() {
-      xOffset = 0;
-      yOffset = 0;
-      widget.changePage(index);
-    });
-  }
-
-
+  int indice = 0;
+  List telas = [
+  Pagina1(),
+  Pagina2(),
+  RecuperarPosicao(),
+  Pagina4()
+  ];
   @override
   Widget build(BuildContext context) {
-    Widget body;
-
-    if (widget.paginaAtual == 1) {
-      body = Pagina1();
-    } else if (widget.paginaAtual == 2) {
-      body = Pagina2();
-
-    } else if (widget.paginaAtual == 3) {
-      body = RecuperarPosicao();
-    }else if(widget.paginaAtual == 4){
-      body =  Pagina4();
-    }else if (widget.paginaAtual==5){
-      body = Logado();
-    }
-    else {
-      body = Center(
-        child: Text('Conteúdo da Página Principal'),
-      );
-    }
-
-    return AnimatedContainer(
-      transform: Matrix4.translationValues(xOffset, yOffset, 0)
-        ..scale(isDrawerOpen ? 0.85 : 1.00)
-        ..rotateZ(isDrawerOpen ? -50 : 0),
-      duration: Duration(milliseconds: 200),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: isDrawerOpen ? BorderRadius.circular(20) : BorderRadius.circular(0),
-      ),
-      child: Scaffold(
+    return Scaffold(
+      backgroundColor: Colors.green,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Image.asset("imagens/arvorebranca.png",scale: 100,),
         backgroundColor: Colors.green,
-        appBar: AppBar(
-          centerTitle: true,
-          title: Image.asset("imagens/arvorebranca.png", height: 50),
-          backgroundColor: Colors.green,
-          leading: IconButton(
-            icon: Icon(menuIcon),
-            onPressed: toggleDrawer,
-          ),
-        ),
-        body: body,
-
       ),
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                ),
+
+                child: Column(
+                  children: [
+                    Image.asset("imagens/arvorepreta.png",height: 100,),
+                    Text("Fitgarden")
+                  ],
+                )
+            ),
+            ListTile(
+              title: Text("Nossos Produtos",style: TextStyle(
+                  color: Colors.green
+              ),),
+              leading: Icon(Icons.fastfood,color: Colors.green,),
+              onTap: (){
+                setState(() {
+                  indice = 0;
+                  Navigator.pop(context);
+                });
+              },
+            ),
+            ListTile(
+              title: Text("Pedido",style: TextStyle(color: Colors.green),),
+              leading: Icon(Icons.request_page_outlined,color: Colors.green,),
+              onTap: (){
+                setState(() {
+                  indice = 1;
+                  Navigator.pop(context);
+                });
+              },
+            ),
+            ListTile(
+              title: Text("Onde estamos",style: TextStyle(color: Colors.green),),
+              leading: Icon(Icons.location_on_outlined, color: Colors.green,),
+              onTap: (){
+                setState(() {
+                  indice = 2;
+                  Navigator.pop(context);
+                });
+              },
+            ),
+            ListTile(
+              title: Text("Login",style: TextStyle(color: Colors.green),),
+              leading: Icon(Icons.logout, color: Colors.green,),
+              onTap: (){
+                setState(() {
+                  indice = 3;
+                  Navigator.pop(context);
+                });
+              },
+            ),
+
+
+          ],
+        ),
+      ),
+      body: telas[indice],
     );
   }
 }

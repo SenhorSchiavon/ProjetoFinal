@@ -21,7 +21,8 @@ class _LogadoState extends State<Logado> {
   List telas = [
     ListarComandas(),
     CadastrarComanda(),
-    CadastrarConta()
+    CadastrarConta(),
+    Principal()
   ];
 
   int paginaAtual = 1;
@@ -97,7 +98,7 @@ class _LogadoState extends State<Logado> {
                 onTap: (){
                   Deslogar();
                   setState(() {
-                    Navigator.of(context).pushNamed('/home');
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Principal(),));
                   });
                 },
               ),

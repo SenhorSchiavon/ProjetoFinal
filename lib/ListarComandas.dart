@@ -66,14 +66,14 @@ class _ListarComandasState extends State<ListarComandas> {
       body: Center(
         child: isLoading
             ? FutureBuilder(
-          future: Future.delayed(Duration(seconds: 4), () => true), // Simulate loading for 4 seconds
+          future: Future.delayed(Duration(seconds: 2), () => true), // Simulate loading for 4 seconds
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               carregarDados(); // Carrega os dados após a animação de carregamento
             }
             return TweenAnimationBuilder(
               tween: Tween(begin: 0.0, end: 1.0),
-              duration: Duration(seconds: 4),
+              duration: Duration(seconds: 2),
               builder: (context, value, child) {
                 int percentage = (value * 100).ceil();
                 return Container(
@@ -119,23 +119,19 @@ class _ListarComandasState extends State<ListarComandas> {
       itemCount: listaProdutos.length,
       itemBuilder: (context, indice) {
         var produto = listaProdutos[indice];
+
+        List<dynamic> tiposSelecionados = produto["tiposSelecionados"];
+
+        String tiposTexto = '';
+
+        tiposSelecionados.forEach((tipo) {
+          tiposTexto += '${tipo['tipoSelecionado']} - Quantidade: ${tipo['quantidade']}\n';
+        });
+
         return Dismissible(
           key: Key(produto["id"].toString()),
           onDismissed: (direction) {
-            Banco.apagarPedido(
-              produto["nome"],
-              produto["telefone"],
-              produto["endereco"],
-              produto["quantidade"],
-              produto["tipo"],
-            );
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text("Item excluído com sucesso!!"),
-                duration: Duration(seconds: 3),
-                backgroundColor: Colors.green,
-              ),
-            );
+            // Seu código de exclusão...
           },
           background: Container(
             color: Colors.red,
@@ -149,11 +145,12 @@ class _ListarComandasState extends State<ListarComandas> {
           child: ListTile(
             title: Text(produto["nome"]),
             subtitle: Text(
-              "Quantidade: ${produto["quantidade"]} - tipo: ${produto["tipo"]}",
+              tiposTexto,
             ),
           ),
         );
       },
     );
   }
-}
+  }
+
