@@ -30,9 +30,9 @@ class _Pagina4State extends State<Pagina4> {
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: senha);
       Navigator.push(context, MaterialPageRoute(builder: (context) => Logado()));
-      // Autenticação bem-sucedida, você pode exibir o AlertDialog aqui.
+
       showDialog(
-        context: context, // O contexto é importante para exibir o AlertDialog.
+        context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text("Bem-vindo",style: TextStyle(
@@ -54,7 +54,7 @@ class _Pagina4State extends State<Pagina4> {
       );
     } catch (error) {
       showDialog(
-        context: context, // O contexto é importante para exibir o AlertDialog.
+        context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text("Falha em Logar",style: TextStyle(

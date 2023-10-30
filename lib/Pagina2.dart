@@ -26,7 +26,6 @@ class _Pagina2State extends State<Pagina2> {
     int quantidade = int.tryParse(campoQuantidade.text) ?? 0;
     String tipo = campoTipo.text;
 
-    // Chamada do método de inserção de pedido com as variáveis corretas
     Banco.inserirPedido(nome, telefone, endereco, quantidade, tipo);
 
     campoNome.clear();

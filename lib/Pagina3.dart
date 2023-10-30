@@ -77,7 +77,7 @@ class _RecuperarPosicaoState extends State<RecuperarPosicao> {
     Marker marcador1 = Marker(markerId: MarkerId("Marcador 1"),
         position: LatLng(-23.319173315849483, -51.15280428601765),
         infoWindow: InfoWindow(
-            title: "Localização FitGarden"
+            title: " R. Uruguai, 1020"
         ));
 
 
