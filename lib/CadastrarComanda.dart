@@ -179,7 +179,7 @@ class _CadastrarComandaState extends State<CadastrarComanda> {
               onChanged: (String? value) {
                 setState(() {
                   dropdownValue = value ?? "";
-                  campoTipo.text = value ?? ""; // Atualiza campoTipo
+                  campoTipo.text = value ?? "";
                 });
               },
               items: list.map((String value) {

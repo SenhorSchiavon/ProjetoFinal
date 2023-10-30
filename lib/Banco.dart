@@ -18,7 +18,6 @@ class Banco {
         "tipo": tipo,
       });
     } catch (e) {
-      // Trate possíveis erros aqui
       print("Erro ao inserir o pedido: $e");
     }
   }
