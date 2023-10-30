@@ -50,7 +50,7 @@ class _Pagina1State extends State<Pagina1> {
                 'Cada garrafa contém 300ml e pode ser congelada por até 30 dias\n\n'
                 'Suco Detox Verde: limão, couve, hortelã, gengibre, cenoura e maçã\n\n'
                 'Suco Antioxidante Vermelho: beterraba, cenoura, maçã e gengibre\n\n',
-            imageUrl: "imagens/detox.jpg",
+            imageUrl: "imagens/Detox.png",
           ),
         ],
       ),

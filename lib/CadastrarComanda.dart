@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_final/Banco.dart';
 
-class Pagina2 extends StatefulWidget {
-  const Pagina2({Key? key}) : super(key: key);
+class CadastrarComanda extends StatefulWidget {
+  const CadastrarComanda({Key? key}) : super(key: key);
 
   @override
-  _Pagina2State createState() => _Pagina2State();
+  _CadastrarComandaState createState() => _CadastrarComandaState();
 }
 
 const List<String> list = ["LowCarb", "Fitness", "Salgado", "Suco Detox"];
 
-class _Pagina2State extends State<Pagina2> {
+class _CadastrarComandaState extends State<CadastrarComanda> {
   final campoNome = TextEditingController();
   final campoTelefone = TextEditingController();
   final campoEndereco = TextEditingController();
@@ -26,7 +26,6 @@ class _Pagina2State extends State<Pagina2> {
     int quantidade = int.tryParse(campoQuantidade.text) ?? 0;
     String tipo = campoTipo.text;
 
-    // Chamada do método de inserção de pedido com as variáveis corretas
     Banco.inserirPedido(nome, telefone, endereco, quantidade, tipo);
 
     campoNome.clear();

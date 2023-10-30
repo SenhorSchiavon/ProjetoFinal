@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: MainScreen(),
       routes: {
+        '/home': (context) => MainScreen(),
         '/nossos_produtos': (context) => Pagina1(),
         '/pedidos': (context) => Pagina2(),
         '/onde_estamos': (context) => RecuperarPosicao(),
@@ -33,6 +34,8 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int paginaAtual = 1;
 
+
+
   void changePage(int index) {
     setState(() {
       paginaAtual = index;
@@ -42,12 +45,11 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
+        body: Stack(
         children: [
-          DrawerScreen(changePage: changePage),
-          Principal(paginaAtual: paginaAtual),
-        ],
-      ),
+        DrawerScreen(changePage: changePage), // Passa o valor de isDrawerOpen
+       Principal(paginaAtual: paginaAtual, changePage: changePage),
+        ],)
     );
   }
 }

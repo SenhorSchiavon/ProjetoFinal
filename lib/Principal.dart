@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_final/logado.dart';
 import 'Pagina1.dart';
 import 'Pagina2.dart';
 import 'Pagina3.dart';
+import 'Pagina4.dart';
+import 'logado.dart';
 import 'drawer_menu.dart';
 
 class Principal extends StatefulWidget {
   final int paginaAtual;
 
-  Principal({Key? key, required this.paginaAtual}) : super(key: key);
+  final Function(int) changePage; // Adicione a função changePage
+
+  Principal({Key? key, required this.paginaAtual, required this.changePage}) : super(key: key);
 
   @override
   _PrincipalState createState() => _PrincipalState();
@@ -37,10 +42,12 @@ class _PrincipalState extends State<Principal> {
 
   void changePage(int index) {
     setState(() {
-      // Utilize widget.paginaAtual para atualizar a página.
-      print("O valor da página atual é ${widget.paginaAtual}");
+      xOffset = 0;
+      yOffset = 0;
+      widget.changePage(index);
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +57,15 @@ class _PrincipalState extends State<Principal> {
       body = Pagina1();
     } else if (widget.paginaAtual == 2) {
       body = Pagina2();
+
     } else if (widget.paginaAtual == 3) {
       body = RecuperarPosicao();
-    } else {
+    }else if(widget.paginaAtual == 4){
+      body =  Pagina4();
+    }else if (widget.paginaAtual==5){
+      body = Logado();
+    }
+    else {
       body = Center(
         child: Text('Conteúdo da Página Principal'),
       );
@@ -79,6 +92,7 @@ class _PrincipalState extends State<Principal> {
           ),
         ),
         body: body,
+
       ),
     );
   }

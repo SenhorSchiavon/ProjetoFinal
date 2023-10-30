@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DrawerScreen extends StatefulWidget {
-  final Function(int) changePage; // Adicione uma função para mudar a página
+  final Function(int) changePage;
+
 
   DrawerScreen({required this.changePage});
 
@@ -71,6 +72,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   icon: Icons.request_page,
                   onTap: () {
                     navigateToPage(2); // Altera para Pagina2
+
                   },
                 ),
                 SizedBox(
@@ -81,6 +83,16 @@ class _DrawerScreenState extends State<DrawerScreen> {
                   icon: Icons.location_on_outlined,
                   onTap: () {
                     navigateToPage(3); // Altera para Pagina3
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                NewRow(
+                  text: 'Login',
+                  icon: Icons.login,
+                  onTap: () {
+                    navigateToPage(4); // Altera para Pagina1
                   },
                 ),
                 SizedBox(
